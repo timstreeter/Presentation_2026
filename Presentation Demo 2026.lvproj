@@ -12,19 +12,16 @@
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
 		<Item Name="Extra" Type="Folder">
 			<Item Name="1. Temperature Controller with Manual Simulation.vi" Type="VI" URL="../1. Temperature Controller with Manual Simulation.vi"/>
-			<Item Name="2a. Temperature Controller with DAQmx IO Incorrect Channels.vi" Type="VI" URL="../2a. Temperature Controller with DAQmx IO Incorrect Channels.vi"/>
-			<Item Name="2b. Temperature Controller with DAQmx IO.vi" Type="VI" URL="../2b. Temperature Controller with DAQmx IO.vi"/>
-			<Item Name="3. Temperature Controller with DAQmx IO with Aliasing.vi" Type="VI" URL="../3. Temperature Controller with DAQmx IO with Aliasing.vi"/>
-			<Item Name="4. Temperature Controller with DAQmx IO with Aliasing and Fault Insertion.vi" Type="VI" URL="../4. Temperature Controller with DAQmx IO with Aliasing and Fault Insertion.vi"/>
-			<Item Name="5. Temperature Controller with DAQmx IO with Aliasing and OOP.vi" Type="VI" URL="../5. Temperature Controller with DAQmx IO with Aliasing and OOP.vi"/>
-			<Item Name="6a. Temperature Controller with DAQmx IO with Aliasing and OOP Functions Mistake.vi" Type="VI" URL="../6a. Temperature Controller with DAQmx IO with Aliasing and OOP Functions Mistake.vi"/>
-			<Item Name="6b. Temperature Controller with DAQmx IO with Aliasing and OOP Functions Fixed.vi" Type="VI" URL="../6b. Temperature Controller with DAQmx IO with Aliasing and OOP Functions Fixed.vi"/>
 		</Item>
 		<Item Name="Support" Type="Folder">
 			<Item Name="Bang Bang Temp Control.vi" Type="VI" URL="../Support/Bang Bang Temp Control.vi"/>
 			<Item Name="Built Chart.vi" Type="VI" URL="../Support/Built Chart.vi"/>
+			<Item Name="Demo Mode.ctl" Type="VI" URL="../Support/Demo Mode.ctl"/>
+			<Item Name="Fault Insertion UI.vi" Type="VI" URL="../Support/Fault Insertion UI.vi"/>
+			<Item Name="Launch Fault Insertion IO.vi" Type="VI" URL="../Support/Launch Fault Insertion IO.vi"/>
 			<Item Name="Launch Simulated IO.vi" Type="VI" URL="../Support/Launch Simulated IO.vi"/>
 			<Item Name="Manual UI.vi" Type="VI" URL="../Support/Manual UI.vi"/>
+			<Item Name="Select Bus.vi" Type="VI" URL="../Support/Select Bus.vi"/>
 			<Item Name="SIL Simulation.vi" Type="VI" URL="../Support/SIL Simulation.vi"/>
 			<Item Name="Temperature Controller Sim with OOP Functions.vi" Type="VI" URL="../Temperature Controller Sim with OOP Functions.vi"/>
 			<Item Name="Temperature Controller with Manual Simulation 2.vi" Type="VI" URL="../Temperature Controller with Manual Simulation 2.vi"/>
@@ -41,7 +38,7 @@
 				<Property Name="\0\AI.Voltage.Units" Type="Str">From Custom Scale</Property>
 				<Property Name="\0\ChanType" Type="Str">Analog Input</Property>
 				<Property Name="\0\Name" Type="Str">Analog Input Task/Voltage</Property>
-				<Property Name="\0\PhysicalChanName" Type="Str">Dev1/ai1</Property>
+				<Property Name="\0\PhysicalChanName" Type="Str">Dev1/ai3</Property>
 				<Property Name="Channels" Type="Str">Analog Input Task/Voltage</Property>
 				<Property Name="Name" Type="Str">Analog Input Task</Property>
 				<Property Name="SampTimingType" Type="Str">On Demand</Property>
@@ -50,10 +47,18 @@
 				<Property Name="\0\ChanType" Type="Str">Digital Output</Property>
 				<Property Name="\0\DO.InvertLines" Type="Str">0</Property>
 				<Property Name="\0\Name" Type="Str">Digital Output Task/DigitalOut</Property>
-				<Property Name="\0\PhysicalChanName" Type="Str">Dev1/port1/line3</Property>
+				<Property Name="\0\PhysicalChanName" Type="Str">Dev1/port1/line2</Property>
 				<Property Name="Channels" Type="Str">Digital Output Task/DigitalOut</Property>
 				<Property Name="Name" Type="Str">Digital Output Task</Property>
 				<Property Name="SampTimingType" Type="Str">On Demand</Property>
+			</Item>
+			<Item Name="LM355Z" Type="NI-DAQmx Scale">
+				<Property Name="Lin.Slope" Type="Str">100</Property>
+				<Property Name="Lin.YIntercept" Type="Str">-292</Property>
+				<Property Name="Name" Type="Str">LM355Z</Property>
+				<Property Name="PreScaledUnits" Type="Str">Volts</Property>
+				<Property Name="ScaledUnits" Type="Str">degC</Property>
+				<Property Name="ScaleType" Type="Str">Linear</Property>
 			</Item>
 		</Item>
 		<Item Name="Temperature Controller Demo.vi" Type="VI" URL="../Temperature Controller Demo.vi"/>
@@ -150,8 +155,18 @@
 				<Item Name="Const_U64.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/Abstract Data Classes/Constants/Support/U64/Const_U64.lvclass"/>
 				<Item Name="Convert property node font to graphics font.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Convert property node font to graphics font.vi"/>
 				<Item Name="CTI.lvlib" Type="Library" URL="/&lt;vilib&gt;/CTI/CTI Drivers/CTI/CTI.lvlib"/>
+				<Item Name="CTI_AnalogIn.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/CTI-Bus/Channels/Analog In/CTI_AnalogIn.lvclass"/>
 				<Item Name="CTI_Bus.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/CTI-Bus/Parent/CTI_Bus.lvclass"/>
 				<Item Name="CTI_Channel.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/CTI-Bus/Channels/CTI_Channel.lvclass"/>
+				<Item Name="CTI_GPIO.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/CTI-Bus/Channels/GPIO/CTI_GPIO.lvclass"/>
+				<Item Name="CTI_GPIO_DigitalOut.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/CTI-Bus/Channels/GPIO/DigitalOut/CTI_GPIO_DigitalOut.lvclass"/>
+				<Item Name="CTI_Serial_Bus.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/CTI-Bus/Children/Serial/CTI_Serial_Bus.lvclass"/>
+				<Item Name="DAQmx - Analog Input Multi Sample.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/DAQmx-Bus/Support/Task Handlers/Analog In Multi Sample/DAQmx - Analog Input Multi Sample.lvclass"/>
+				<Item Name="DAQmx - Analog Input Single Sample.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/DAQmx-Bus/Support/Task Handlers/Analog In Single Sample/DAQmx - Analog Input Single Sample.lvclass"/>
+				<Item Name="DAQmx - Analog Output Multi Sample.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/DAQmx-Bus/Support/Task Handlers/Analog Out Multi Sample/DAQmx - Analog Output Multi Sample.lvclass"/>
+				<Item Name="DAQmx - Analog Output Single Sample.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/DAQmx-Bus/Support/Task Handlers/Analog Out Single Sample/DAQmx - Analog Output Single Sample.lvclass"/>
+				<Item Name="DAQmx - Digital Input Single Sample.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/DAQmx-Bus/Support/Task Handlers/Digital In Single Sample/DAQmx - Digital Input Single Sample.lvclass"/>
+				<Item Name="DAQmx - Digital Output Single Sample.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/DAQmx-Bus/Support/Task Handlers/Digital Out Single Sample/DAQmx - Digital Output Single Sample.lvclass"/>
 				<Item Name="DAQmx Clear Task.vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/configure/task.llb/DAQmx Clear Task.vi"/>
 				<Item Name="DAQmx Fill In Error Info.vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/miscellaneous.llb/DAQmx Fill In Error Info.vi"/>
 				<Item Name="DAQmx Read (Analog 1D DBL 1Chan NSamp).vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/read.llb/DAQmx Read (Analog 1D DBL 1Chan NSamp).vi"/>
@@ -259,6 +274,11 @@
 				<Item Name="DAQmx Write (Raw 1D U16).vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/write.llb/DAQmx Write (Raw 1D U16).vi"/>
 				<Item Name="DAQmx Write (Raw 1D U32).vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/write.llb/DAQmx Write (Raw 1D U32).vi"/>
 				<Item Name="DAQmx Write.vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/write.llb/DAQmx Write.vi"/>
+				<Item Name="DAQmx-Bus.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/DAQmx-Bus/DAQmx-Bus.lvclass"/>
+				<Item Name="DAQmx-Bus_Bool_Type.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/DAQmx-Bus/Support/Types/Boolean/DAQmx-Bus_Bool_Type.lvclass"/>
+				<Item Name="DAQmx-Bus_DBL_Type.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/DAQmx-Bus/Support/Types/DBL/DAQmx-Bus_DBL_Type.lvclass"/>
+				<Item Name="DAQmx-Bus_Waveform_Type.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/DAQmx-Bus/Support/Types/Waveform/DAQmx-Bus_Waveform_Type.lvclass"/>
+				<Item Name="Delimited String to 1D String Array.vi" Type="VI" URL="/&lt;vilib&gt;/AdvancedString/Delimited String to 1D String Array.vi"/>
 				<Item Name="Details Display Dialog.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Details Display Dialog.vi"/>
 				<Item Name="DialogType.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/DialogType.ctl"/>
 				<Item Name="DialogTypeEnum.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/DialogTypeEnum.ctl"/>
@@ -424,18 +444,12 @@
 				<Item Name="VariantType.lvlib" Type="Library" URL="/&lt;vilib&gt;/Utility/VariantDataType/VariantType.lvlib"/>
 				<Item Name="Vector.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/Abstract Data Classes/Abs_Types/Collections/Vectors/Vector/Vector.lvclass"/>
 				<Item Name="Vector_DBL.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/TSA/Abstract Data Classes/Abs_Types/Collections/Vectors/Vector_DBL/Vector_DBL.lvclass"/>
+				<Item Name="VISA Configure Serial Port" Type="VI" URL="/&lt;vilib&gt;/Instr/_visa.llb/VISA Configure Serial Port"/>
+				<Item Name="VISA Configure Serial Port (Instr).vi" Type="VI" URL="/&lt;vilib&gt;/Instr/_visa.llb/VISA Configure Serial Port (Instr).vi"/>
+				<Item Name="VISA Configure Serial Port (Serial Instr).vi" Type="VI" URL="/&lt;vilib&gt;/Instr/_visa.llb/VISA Configure Serial Port (Serial Instr).vi"/>
+				<Item Name="VISA Open Access Mode.ctl" Type="VI" URL="/&lt;vilib&gt;/Instr/_visa.llb/VISA Open Access Mode.ctl"/>
 				<Item Name="whitespace.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/whitespace.ctl"/>
 			</Item>
-			<Item Name="DAQmx - Analog Input Multi Sample.lvclass" Type="LVClass" URL="../../DAQmx-Bus/Source/Support/Task Handlers/Analog In Multi Sample/DAQmx - Analog Input Multi Sample.lvclass"/>
-			<Item Name="DAQmx - Analog Input Single Sample.lvclass" Type="LVClass" URL="../../DAQmx-Bus/Source/Support/Task Handlers/Analog In Single Sample/DAQmx - Analog Input Single Sample.lvclass"/>
-			<Item Name="DAQmx - Analog Output Multi Sample.lvclass" Type="LVClass" URL="../../DAQmx-Bus/Source/Support/Task Handlers/Analog Out Multi Sample/DAQmx - Analog Output Multi Sample.lvclass"/>
-			<Item Name="DAQmx - Analog Output Single Sample.lvclass" Type="LVClass" URL="../../DAQmx-Bus/Source/Support/Task Handlers/Analog Out Single Sample/DAQmx - Analog Output Single Sample.lvclass"/>
-			<Item Name="DAQmx - Digital Input Single Sample.lvclass" Type="LVClass" URL="../../DAQmx-Bus/Source/Support/Task Handlers/Digital In Single Sample/DAQmx - Digital Input Single Sample.lvclass"/>
-			<Item Name="DAQmx - Digital Output Single Sample.lvclass" Type="LVClass" URL="../../DAQmx-Bus/Source/Support/Task Handlers/Digital Out Single Sample/DAQmx - Digital Output Single Sample.lvclass"/>
-			<Item Name="DAQmx-Bus.lvclass" Type="LVClass" URL="../../DAQmx-Bus/Source/DAQmx-Bus.lvclass"/>
-			<Item Name="DAQmx-Bus_Bool_Type.lvclass" Type="LVClass" URL="../../DAQmx-Bus/Source/Support/Types/Boolean/DAQmx-Bus_Bool_Type.lvclass"/>
-			<Item Name="DAQmx-Bus_DBL_Type.lvclass" Type="LVClass" URL="../../DAQmx-Bus/Source/Support/Types/DBL/DAQmx-Bus_DBL_Type.lvclass"/>
-			<Item Name="DAQmx-Bus_Waveform_Type.lvclass" Type="LVClass" URL="../../DAQmx-Bus/Source/Support/Types/Waveform/DAQmx-Bus_Waveform_Type.lvclass"/>
 			<Item Name="lvanlys.dll" Type="Document" URL="/&lt;resource&gt;/lvanlys.dll"/>
 			<Item Name="NiFpgaLv.dll" Type="Document" URL="NiFpgaLv.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
@@ -543,6 +557,7 @@ AddOutputFilter chunkFilter
 				<Property Name="configString.name" Type="Str">10 MHz TimebaseNumberOfSyncRegistersForReadInProject=Auto;resource=/10 MHz Timebase;0;ReadMethodType=bool12.8 MHz TimebaseNumberOfSyncRegistersForReadInProject=Auto;resource=/12.8 MHz Timebase;0;ReadMethodType=bool13.1072 MHz TimebaseNumberOfSyncRegistersForReadInProject=Auto;resource=/13.1072 MHz Timebase;0;ReadMethodType=bool40 MHz Onboard ClockResourceName=40 MHz Onboard Clock;TopSignalConnect=Clk40;ClockSignalName=Clk40;MinFreq=40000000.000000;MaxFreq=40000000.000000;VariableFreq=0;NomFreq=40000000.000000;PeakPeriodJitter=250.000000;MinDutyCycle=50.000000;MaxDutyCycle=50.000000;Accuracy=100.000000;RunTime=0;SpreadSpectrum=0;GenericDataHash=D41D8CD98F00B204E9800998ECF8427E;Chassis Temperatureresource=/Chassis Temperature;0;ReadMethodType=i16cRIO_Trig0ArbitrationForOutputData=NeverArbitrate;NumberOfSyncRegistersForOutputData=1;NumberOfSyncRegistersForReadInProject=Auto;resource=/cRIO_Trig/cRIO_Trig0;0;ReadMethodType=bool;WriteMethodType=boolcRIO_Trig1ArbitrationForOutputData=NeverArbitrate;NumberOfSyncRegistersForOutputData=1;NumberOfSyncRegistersForReadInProject=Auto;resource=/cRIO_Trig/cRIO_Trig1;0;ReadMethodType=bool;WriteMethodType=boolcRIO_Trig2ArbitrationForOutputData=NeverArbitrate;NumberOfSyncRegistersForOutputData=1;NumberOfSyncRegistersForReadInProject=Auto;resource=/cRIO_Trig/cRIO_Trig2;0;ReadMethodType=bool;WriteMethodType=boolcRIO_Trig3ArbitrationForOutputData=NeverArbitrate;NumberOfSyncRegistersForOutputData=1;NumberOfSyncRegistersForReadInProject=Auto;resource=/cRIO_Trig/cRIO_Trig3;0;ReadMethodType=bool;WriteMethodType=boolcRIO_Trig4NumberOfSyncRegistersForReadInProject=Auto;resource=/cRIO_Trig/cRIO_Trig4;0;ReadMethodType=boolcRIO_Trig5NumberOfSyncRegistersForReadInProject=Auto;resource=/cRIO_Trig/cRIO_Trig5;0;ReadMethodType=boolcRIO_Trig6NumberOfSyncRegistersForReadInProject=Auto;resource=/cRIO_Trig/cRIO_Trig6;0;ReadMethodType=boolcRIO_Trig7NumberOfSyncRegistersForReadInProject=Auto;resource=/cRIO_Trig/cRIO_Trig7;0;ReadMethodType=boolcRIO-9053/Clk40/falsefalseFPGA_EXECUTION_MODEFPGA_TARGETFPGA_TARGET_CLASSCRIO_9053FPGA_TARGET_FAMILYARTIX7TARGET_TYPEFPGAMod1/AI0resource=/crio_Mod1/AI0;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_18_3.ctlMod1/AI1resource=/crio_Mod1/AI1;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_18_3.ctlMod1/AI2resource=/crio_Mod1/AI2;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_18_3.ctlMod1/AI3resource=/crio_Mod1/AI3;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_18_3.ctlMod1/AI4resource=/crio_Mod1/AI4;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_18_3.ctlMod1/AI5resource=/crio_Mod1/AI5;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_18_3.ctlMod1/AI6resource=/crio_Mod1/AI6;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_18_3.ctlMod1/AI7resource=/crio_Mod1/AI7;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_18_3.ctlMod1/AO0resource=/crio_Mod1/AO0;0;WriteMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_16_3.ctlMod1/AO1resource=/crio_Mod1/AO1;0;WriteMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_16_3.ctlMod1/AO2resource=/crio_Mod1/AO2;0;WriteMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_16_3.ctlMod1/AO3resource=/crio_Mod1/AO3;0;WriteMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_16_3.ctlMod1/AO4resource=/crio_Mod1/AO4;0;WriteMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_16_3.ctlMod1/AO5resource=/crio_Mod1/AO5;0;WriteMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_16_3.ctlMod1/AO6resource=/crio_Mod1/AO6;0;WriteMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_16_3.ctlMod1/AO7resource=/crio_Mod1/AO7;0;WriteMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_U_16_3.ctlMod1/DIO0ArbitrationForOutputData=NeverArbitrate;NumberOfSyncRegistersForOutputData=1;NumberOfSyncRegistersForReadInProject=Auto;resource=/crio_Mod1/DIO0;0;ReadMethodType=boolMod1/DIO1ArbitrationForOutputData=NeverArbitrate;NumberOfSyncRegistersForOutputData=1;NumberOfSyncRegistersForReadInProject=Auto;resource=/crio_Mod1/DIO1;0;ReadMethodType=boolMod1/DIO2ArbitrationForOutputData=NeverArbitrate;NumberOfSyncRegistersForOutputData=1;NumberOfSyncRegistersForReadInProject=Auto;resource=/crio_Mod1/DIO2;0;ReadMethodType=boolMod1/DIO3:0ArbitrationForOutputData=NeverArbitrate;NumberOfSyncRegistersForOutputData=1;NumberOfSyncRegistersForReadInProject=Auto;resource=/crio_Mod1/DIO3:0;0;ReadMethodType=u8Mod1/DIO3ArbitrationForOutputData=NeverArbitrate;NumberOfSyncRegistersForOutputData=1;NumberOfSyncRegistersForReadInProject=Auto;resource=/crio_Mod1/DIO3;0;ReadMethodType=bool;WriteMethodType=boolMod1[crioConfig.Begin]crio.Calibration=1,crio.Location=Slot 1,crio.Type=NI 9381,cRIOModule.Allow Programmatic Line Direction=false,cRIOModule.EnableDECoM=false,cRIOModule.EnableInputFifo=false,cRIOModule.EnableOutputFifo=false,cRIOModule.Hot Swap Behavior=0,cRIOModule.Initial Line Direction="1000",cRIOModule.RsiAttributes=[crioConfig.End]Mod2/Autozeroresource=/crio_Mod2/Autozero;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_S_24_neg2.ctlMod2/CJCresource=/crio_Mod2/CJC;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_S_24_neg2.ctlMod2/TC0resource=/crio_Mod2/TC0;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_S_24_neg2.ctlMod2/TC1resource=/crio_Mod2/TC1;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_S_24_neg2.ctlMod2/TC2resource=/crio_Mod2/TC2;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_S_24_neg2.ctlMod2/TC3resource=/crio_Mod2/TC3;0;ReadMethodType=vi.lib\LabVIEW Targets\FPGA\cRIO\shared\nicrio_FXP_Controls\nicrio_FXP_S_24_neg2.ctlMod2[crioConfig.Begin]crio.Calibration=1,crio.Location=Slot 2,crio.Type=NI 9211,cRIOModule.AI0.DegreeRange=2,cRIOModule.AI0.TCoupleType=0,cRIOModule.AI1.DegreeRange=2,cRIOModule.AI1.TCoupleType=0,cRIOModule.AI2.DegreeRange=2,cRIOModule.AI2.TCoupleType=0,cRIOModule.AI3.DegreeRange=2,cRIOModule.AI3.TCoupleType=0,cRIOModule.EnableDECoM=false,cRIOModule.EnableInputFifo=false,cRIOModule.EnableOutputFifo=false,cRIOModule.RsiAttributes=[crioConfig.End]Offset from Time Reference ValidNumberOfSyncRegistersForReadInProject=0;resource=/Time Synchronization/Offset from Time Reference Valid;0;ReadMethodType=boolOffset from Time ReferenceNumberOfSyncRegistersForReadInProject=0;resource=/Time Synchronization/Offset from Time Reference;0;ReadMethodType=i32Reset RT Appresource=/Reset RT App;0;WriteMethodType=boolScan Clockresource=/Scan Clock;0;ReadMethodType=boolSleepresource=/Sleep;0;ReadMethodType=bool;WriteMethodType=boolSystem Resetresource=/System Reset;0;ReadMethodType=bool;WriteMethodType=boolSystem Watchdog ExpiredNumberOfSyncRegistersForReadInProject=Auto;resource=/System Watchdog Expired;0;ReadMethodType=boolTime SourceNumberOfSyncRegistersForReadInProject=0;resource=/Time Synchronization/Time Source;0;ReadMethodType=Targets\NI\FPGA\RIO\CompactRIO\Sync\SyncSource.ctlTime Synchronization FaultNumberOfSyncRegistersForReadInProject=0;resource=/Time Synchronization/Time Synchronization Fault;0;ReadMethodType=boolTimeNumberOfSyncRegistersForReadInProject=0;resource=/Time Synchronization/Time;0;ReadMethodType=u64USER FPGA LEDArbitrationForOutputData=NeverArbitrate;NumberOfSyncRegistersForOutputData=1;NumberOfSyncRegistersForReadInProject=Auto;resource=/USER FPGA LED;0;ReadMethodType=bool;WriteMethodType=bool</Property>
 				<Property Name="NI.LV.FPGA.CompileConfigString" Type="Str">cRIO-9053/Clk40/falsefalseFPGA_EXECUTION_MODEFPGA_TARGETFPGA_TARGET_CLASSCRIO_9053FPGA_TARGET_FAMILYARTIX7TARGET_TYPEFPGA</Property>
 				<Property Name="NI.LV.FPGA.Version" Type="Int">6</Property>
+				<Property Name="niFpga_TopLevelVIID" Type="Path">/C/TSA/Presentation_2026/Support/cRIO/FPGA/FPGA Main.vi</Property>
 				<Property Name="Resource Name" Type="Str">RIO0</Property>
 				<Property Name="Target Class" Type="Str">cRIO-9053</Property>
 				<Property Name="Top-Level Timing Source" Type="Str">40 MHz Onboard Clock</Property>
